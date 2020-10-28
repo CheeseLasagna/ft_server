@@ -12,6 +12,8 @@ COPY ./src/tlavelle.key /etc/ssl/private/ssl-cert-snakeoil.key
 COPY ./src/tlavelle.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
 
 RUN mv usr/share/wordpress /var/www/html
+
+RUN chown -R www-data /var/www/html
 RUN service mysql start && mysql < dtb.sql
 
 ENTRYPOINT bash services.sh 
